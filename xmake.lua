@@ -13,7 +13,17 @@ if not has_config("vs_runtime") then
 end
 
 target("BedrockBugFixes") -- Change this to your plugin name.
-    add_cxflags("/EHa", "/utf-8")
+    add_cxflags(
+        "/EHa",
+        "/utf-8",
+        "/W4",
+        "/w44265",
+        "/w44289",
+        "/w44296",
+        "/w45263",
+        "/w44738",
+        "/w45204"
+    )
     add_defines("NOMINMAX", "UNICODE")
     add_files("src/**.cpp")
     add_includedirs("src")
@@ -23,7 +33,6 @@ target("BedrockBugFixes") -- Change this to your plugin name.
     set_kind("shared")
     set_languages("c++20")
     set_symbols("debug")
-
     after_build(function (target)
         local plugin_packer = import("scripts.after_build")
 

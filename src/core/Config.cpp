@@ -22,7 +22,7 @@ void registerConfigCommand() {
     size_t                                      iter{0};
     ll::reflection::forEachMember(
         BedrockBugFixes::getInstance().getConfig().bugfix,
-        [&](std::string_view name, auto& val) { bugfixEnum.emplace_back(name, iter++); }
+        [&](std::string_view name, auto&) { bugfixEnum.emplace_back(name, iter++); }
     );
     reg.tryRegisterEnum(ll::command::enum_name_v<bugfix_type>, std::move(bugfixEnum), Bedrock::type_id<CommandRegistry, bugfix_type>(), &CommandRegistry::parse<bugfix_type>);
 
@@ -41,9 +41,8 @@ void registerConfigCommand() {
         .text("bugfix")
         .required("type")
         .required("value")
-        .execute<[](CommandOrigin const& orgin,
-                    CommandOutput&       output,
-                    BugfixParam const&   param) {
+        .execute<[](CommandOrigin const&, CommandOutput& output, BugfixParam const& param
+                 ) {
             ll::meta::visitIndex<boost::pfr::detail::fields_count<Config::BugFixes>()>(
                 [&]<size_t I>() {
                     boost::pfr::get<I>(BedrockBugFixes::getInstance().getConfig().bugfix
