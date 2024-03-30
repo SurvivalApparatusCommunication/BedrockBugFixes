@@ -12,6 +12,10 @@ namespace bbf {
 enum class bugfix_type {};
 
 void registerConfigCommand() {
+    auto& setting = BedrockBugFixes::getInstance().getConfig().commands.config_command;
+    if (!setting.enabled) {
+        return;
+    }
     auto& reg = ll::command::CommandRegistrar::getInstance();
 
     std::vector<std::pair<std::string, uint64>> bugfixEnum;
@@ -22,9 +26,11 @@ void registerConfigCommand() {
     );
     reg.tryRegisterEnum(ll::command::enum_name_v<bugfix_type>, std::move(bugfixEnum), Bedrock::type_id<CommandRegistry, bugfix_type>(), &CommandRegistry::parse<bugfix_type>);
 
-    auto& cmd = reg.getOrCreateCommand("bbfconfig", "config bedrock bugfixes");
-
-    cmd.alias("bbfcfg");
+    auto& cmd = reg.getOrCreateCommand(
+        "bbfconfig",
+        "config bedrock bugfixes",
+        setting.permission
+    );
 
     struct BugfixParam {
         bugfix_type type;

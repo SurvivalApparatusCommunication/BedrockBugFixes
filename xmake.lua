@@ -5,7 +5,8 @@ add_repositories("liteldev-repo https://github.com/LiteLDev/xmake-repo.git")
 -- add_requires("levilamina x.x.x") for a specific version
 -- add_requires("levilamina develop") to use develop version
 -- please note that you should add bdslibrary yourself if using dev version
-add_requires("levilamina")
+add_requires("levilamina develop")
+add_requires("bdslibrary 1.20.72.01")
 
 if not has_config("vs_runtime") then
     set_runtimes("MD")
@@ -16,7 +17,7 @@ target("BedrockBugFixes") -- Change this to your plugin name.
     add_defines("NOMINMAX", "UNICODE")
     add_files("src/**.cpp")
     add_includedirs("src")
-    add_packages("levilamina")
+    add_packages("levilamina","bdslibrary")
     add_shflags("/DELAYLOAD:bedrock_server.dll") -- To use symbols provided by SymbolProvider.
     set_exceptions("none") -- To avoid conflicts with /EHa.
     set_kind("shared")

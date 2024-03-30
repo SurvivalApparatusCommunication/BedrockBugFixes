@@ -20,7 +20,7 @@ LL_TYPE_INSTANCE_HOOK(
     DimensionType fromDimension,
     DimensionType toDimension
 ) {
-    auto& mob = ll::memory::dAccess<Mob>(this, 7 * 8);
+    auto& mob = *ll::memory::dAccess<Mob*>(this, 7 * 8);
     if (mob.isType(ActorType::Allay)) {
         return;
     }

@@ -45,9 +45,8 @@ bool BedrockBugFixes::enable() {
     if (!mConfig) {
         loadConfig();
     }
-    if (getConfig().commands.config_command) {
-        registerConfigCommand();
-    }
+    registerConfigCommand();
+
     return true;
 }
 
