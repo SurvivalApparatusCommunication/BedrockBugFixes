@@ -1,28 +1,25 @@
-# LeviLamina Plugin Template
+# BedrockBugFixes
 
-A LeviLamina plugin template
+## BugFixes
 
-This plugin is a template for developing LeviLamina plugins.
+All bugfixes will not affect the vanilla features.
+所有bugfix均不会影响原版特性。
 
-## Install
+### HopperBugsFix
 
-Generate a new repository from this template.
+fix MCPE-99462 Hoppers don't pickup items parallel to chunk border
 
-## Usage
+修复漏斗区块边界问题。
 
-Before using this plugin template, make sure that you have installed XMake and a Minecraft Bedrock Server with LeviLamina.
+### BeeBugsFix
 
-1. Clone the new repository into a local folder.
+fix a bug where bees could not collect nectar normally when there were more than 1 flower around.
+修复蜜蜂在周围有超过1个花时无法正常采蜜的bug。
 
-1. Change the plugin name and the expected LeviLamina version in `xmake.lua`.
+### AllayTeleportBugFix
 
-1. Add your code.
-
-1. Run `xmake repo -u` in the root of the repository.
-
-1. Run `xmake` to build the plugin.
-
-Now the build is complete at `bin/`.
+fix allay was incorrectly teleported across dimensions without passing through the portal.
+修复了小安粒在未经过传送门时被错误的跨维度传送的bug。
 
 ## Contributing
 
@@ -32,4 +29,4 @@ PRs accepted.
 
 ## License
 
-CC0-1.0 © LiteLDev
+AGPL v3.0

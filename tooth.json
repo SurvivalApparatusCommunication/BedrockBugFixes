@@ -1,25 +1,25 @@
 {
     "format_version": 2,
-    "tooth": "my-plugin",
-    "version": "0.0.0",
+    "tooth": "BedrockBugFixes",
+    "version": "0.1.0",
     "info": {
-        "name": "My Plugin Name",
-        "description": "My Plugin Description",
-        "author": "My Name",
+        "name": "BedrockBugFixes",
+        "description": "fix bugs",
+        "author": "OEOTYAN",
         "tags": [
             "levilamina",
             "plugin"
         ]
     },
-    "asset_url": "My Asset Url",
+    "asset_url": "https://github.com/SurvivalApparatusCommunication/BedrockBugFixes/releases/download/v0.1.0/BedrockBugFixes-windows-x64.zip",
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": "My LeviLamina Dependency Version"
+        "github.com/LiteLDev/LeviLamina": ">=0.10.0"
     },
     "files": {
         "place": [
             {
-                "src": "my-plugin/*",
-                "dest": "plugins/my-plugin/"
+                "src": "BedrockBugFixes/*",
+                "dest": "plugins/BedrockBugFixes/"
             }
         ]
     }
