@@ -1,6 +1,6 @@
 {
     "format_version": 2,
-    "tooth": "BedrockBugFixes",
+    "tooth": "github.com/SurvivalApparatusCommunication/BedrockBugFixes",
     "version": "0.1.0",
     "info": {
         "name": "BedrockBugFixes",
