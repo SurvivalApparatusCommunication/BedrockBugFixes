@@ -19,6 +19,8 @@ public:
 
     [[nodiscard]] Config& getConfig() { return *mConfig; }
 
+    [[nodiscard]] std::filesystem::path getConfigPath() const;
+
     bool loadConfig();
 
     bool saveConfig();

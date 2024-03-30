@@ -8,7 +8,7 @@ namespace bbf {
 struct Config {
     int version = 0;
 
-    struct {
+    struct BugFixes {
        ll::reflection::Dispatcher<bool, HopperBugsFix>       hopper_bugs_fix        = true;
        ll::reflection::Dispatcher<bool, BeeBugsFix>          bee_bugs_fix           = true;
        ll::reflection::Dispatcher<bool, AllayTeleportBugFix> allay_teleport_bug_fix = true;

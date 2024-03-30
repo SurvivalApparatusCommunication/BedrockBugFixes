@@ -11,23 +11,27 @@ static std::unique_ptr<BedrockBugFixes> instance;
 
 BedrockBugFixes& BedrockBugFixes::getInstance() { return *instance; }
 
+std::filesystem::path BedrockBugFixes::getConfigPath() const {
+    return getSelf().getConfigDir() / u8"config.json";
+}
+
 bool BedrockBugFixes::loadConfig() {
     bool res{};
     mConfig.emplace();
     try {
-        res = ll::config::loadConfig(*mConfig, getSelf().getConfigDir());
+        res = ll::config::loadConfig(*mConfig, getConfigPath());
     } catch (...) {
         ll::error_utils::printCurrentException(getLogger());
         res = false;
     }
     if (!res) {
-        res = ll::config::saveConfig(*mConfig, getSelf().getConfigDir());
+        res = ll::config::saveConfig(*mConfig, getConfigPath());
     }
     return res;
 }
 
 bool BedrockBugFixes::saveConfig() {
-    return ll::config::saveConfig(*mConfig, getSelf().getConfigDir());
+    return ll::config::saveConfig(*mConfig, getConfigPath());
 }
 
 bool BedrockBugFixes::load() {

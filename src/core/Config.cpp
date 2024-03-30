@@ -38,17 +38,13 @@ void registerConfigCommand() {
         .execute<[](CommandOrigin const& orgin,
                     CommandOutput&       output,
                     BugfixParam const&   param) {
-            ll::meta::visitIndex<boost::pfr::detail::fields_count<
-                decltype(BedrockBugFixes::getInstance().getConfig().bugfix)>()>(
+            ll::meta::visitIndex<boost::pfr::detail::fields_count<Config::BugFixes>()>(
                 [&]<size_t I>() {
                     boost::pfr::get<I>(BedrockBugFixes::getInstance().getConfig().bugfix
                     ) = param.value;
                     output.success(
                         "set {} to {}",
-                        boost::pfr::get_name<
-                            I,
-                            decltype(BedrockBugFixes::getInstance().getConfig().bugfix)>(
-                        ),
+                        boost::pfr::get_name<I, Config::BugFixes>(),
                         param.value
                     );
                 },
