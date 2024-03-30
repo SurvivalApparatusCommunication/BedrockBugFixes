@@ -50,6 +50,7 @@ void registerConfigCommand() {
                 },
                 (size_t)param.type
             );
+            BedrockBugFixes::getInstance().saveConfig();
         }>();
 }
 } // namespace bbf
