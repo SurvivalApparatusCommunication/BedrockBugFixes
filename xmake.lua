@@ -1,6 +1,6 @@
 add_rules("mode.release")
 
-add_repositories("liteldev-repo git@github.com:LiteLDev/xmake-repo.git")
+add_repositories("liteldev-repo https://github.com/LiteLDev/xmake-repo.git")
 
 -- add_requires("levilamina x.x.x") for a specific version
 -- add_requires("levilamina develop") to use develop version
