@@ -5,7 +5,6 @@
 #include <ll/api/command/CommandRegistrar.h>
 #include <ll/api/command/runtime/RuntimeOverload.h>
 #include <ll/api/reflection/Reflection.h>
-#include <ll/api/reflection/Visit.h>
 
 namespace bbf {
 
@@ -37,13 +36,10 @@ void registerConfigCommand() {
         bool        value;
     };
 
-    cmd.overload<BugfixParam>()
-        .text("bugfix")
-        .required("type")
-        .required("value")
-        .execute<[](CommandOrigin const&, CommandOutput& output, BugfixParam const& param
-                 ) {
+    cmd.overload<BugfixParam>().text("bugfix").required("type").required("value").execute(
+        [](CommandOrigin const&, CommandOutput& output, BugfixParam const& param) {
             ll::meta::visitIndex<boost::pfr::detail::fields_count<Config::BugFixes>()>(
+                (size_t)param.type,
                 [&]<size_t I>() {
                     boost::pfr::get<I>(BedrockBugFixes::getInstance().getConfig().bugfix
                     ) = param.value;
@@ -52,10 +48,10 @@ void registerConfigCommand() {
                         boost::pfr::get_name<I, Config::BugFixes>(),
                         param.value
                     );
-                },
-                (size_t)param.type
+                }
             );
             BedrockBugFixes::getInstance().saveConfig();
-        }>();
+        }
+    );
 }
 } // namespace bbf
