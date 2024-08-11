@@ -2,7 +2,7 @@
 
 #include "Config.h"
 
-#include <ll/api/plugin/NativePlugin.h>
+#include <ll/api/mod/NativeMod.h>
 
 namespace bbf {
 
@@ -11,9 +11,9 @@ class BedrockBugFixes {
 public:
     static BedrockBugFixes& getInstance();
 
-    BedrockBugFixes(ll::plugin::NativePlugin& self) : mSelf(self) {}
+    BedrockBugFixes(ll::mod::NativeMod& self) : mSelf(self) {}
 
-    [[nodiscard]] ll::plugin::NativePlugin& getSelf() const { return mSelf; }
+    [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
     [[nodiscard]] ll::Logger& getLogger() const { return getSelf().getLogger(); }
 
@@ -34,8 +34,8 @@ public:
     bool unload();
 
 private:
-    ll::plugin::NativePlugin& mSelf;
-    std::optional<Config>     mConfig;
+    ll::mod::NativeMod&   mSelf;
+    std::optional<Config> mConfig;
 };
 
 } // namespace bbf

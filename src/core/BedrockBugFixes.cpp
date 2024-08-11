@@ -1,8 +1,8 @@
 #include "BedrockBugFixes.h"
 
 #include <ll/api/Config.h>
-#include <ll/api/plugin/NativePlugin.h>
-#include <ll/api/plugin/RegisterHelper.h>
+#include <ll/api/mod/NativeMod.h>
+#include <ll/api/mod/RegisterHelper.h>
 #include <ll/api/utils/ErrorUtils.h>
 
 namespace bbf {
@@ -60,4 +60,4 @@ bool BedrockBugFixes::unload() { return true; }
 
 } // namespace bbf
 
-LL_REGISTER_PLUGIN(bbf::BedrockBugFixes, bbf::instance);
+LL_REGISTER_MOD(bbf::BedrockBugFixes, bbf::instance);
