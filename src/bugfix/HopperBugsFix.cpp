@@ -49,7 +49,11 @@ LL_TYPE_INSTANCE_HOOK(
 
     for (int x = minChunk.x; x <= maxChunk.x; x++)
         for (int z = minChunk.z; z <= maxChunk.z; z++) {
-            auto* chunk = blockSource.getChunk({x, z});
+            auto* chunk = ll::memory::virtualCall<LevelChunk*, ChunkPos const&>(
+                &blockSource,
+                39,
+                ChunkPos{x, z}
+            );
             if (!chunk) {
                 continue;
             }
