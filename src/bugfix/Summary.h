@@ -35,12 +35,4 @@ struct ChunkSaveBugFix {
     ChunkSaveBugFix();
     ~ChunkSaveBugFix();
 };
-struct SnifferEggBugFix {
-    struct Impl;
-    std::unique_ptr<Impl> impl;
-
-    void call(bool);
-    SnifferEggBugFix();
-    ~SnifferEggBugFix();
-};
 } // namespace bbf

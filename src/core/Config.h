@@ -7,7 +7,7 @@
 
 namespace bbf {
 struct Config {
-    int version = 2;
+    int version = 1;
 
     struct BugFixes {
         ll::reflection::Dispatcher<bool, AllayTeleportBugFix> allay_teleport_bug_fix =
@@ -15,7 +15,6 @@ struct Config {
         ll::reflection::Dispatcher<bool, BeeBugsFix>      bee_bugs_fix       = true;
         ll::reflection::Dispatcher<bool, ChunkSaveBugFix> chunk_save_bug_fix = true;
         ll::reflection::Dispatcher<bool, HopperBugsFix>   hopper_bugs_fix    = true;
-        ll::reflection::Dispatcher<bool, SnifferEggBugFix> sniffer_egg_bug_fix = true;
     } bugfix{};
 
     struct CmdSetting {
