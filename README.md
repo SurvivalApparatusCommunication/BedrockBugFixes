@@ -8,7 +8,7 @@ All bugfixes will not affect the vanilla features.
 
 ### HopperBugsFix
 
-fix MCPE-99462 Hoppers don't pickup items parallel to chunk border
+fix [MCPE-99462](https://bugs.mojang.com/browse/MCPE-99462) Hoppers don't pickup items parallel to chunk border
 
 修复漏斗区块边界问题。
 
@@ -29,6 +29,12 @@ fix allay was incorrectly teleported across dimensions without passing through t
 fix the bottom subchunk could not be saved.
 
 修复了最下方的子区块无法保存的bug。
+
+### SnifferEggBugFix
+
+fix [MCPE-174063](https://bugs.mojang.com/browse/MCPE-174063) Instant hatch sniffer egg.
+
+修复了嗅探兽蛋的bug。
 
 ## Contributing
 
