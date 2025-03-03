@@ -2,7 +2,7 @@
 
 #include <ll/api/memory/Hook.h>
 
-#include <mc/world/AutomaticID.h>
+#include <mc/deps/core/utility/AutomaticID.h>
 #include <mc/world/actor/ai/goal/FollowOwnerGoal.h>
 #include <mc/world/actor/player/Player.h>
 
@@ -12,9 +12,7 @@ LL_TYPE_INSTANCE_HOOK(
     FollowOwnerGoalHook,
     ll::memory::HookPriority::Normal,
     FollowOwnerGoal,
-    //&FollowOwnerGoal::onPlayerDimensionChanged,
-    "?onPlayerDimensionChanged@FollowOwnerGoal@@UEAAXPEAVPlayer@@V?$AutomaticID@"
-    "VDimension@@H@@1@Z",
+    &FollowOwnerGoal::$onPlayerDimensionChanged,
     void,
     Player*       player,
     DimensionType fromDimension,

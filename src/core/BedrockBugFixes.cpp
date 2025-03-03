@@ -7,9 +7,10 @@
 
 namespace bbf {
 
-static std::unique_ptr<BedrockBugFixes> instance;
-
-BedrockBugFixes& BedrockBugFixes::getInstance() { return *instance; }
+BedrockBugFixes& BedrockBugFixes::getInstance() {
+    static BedrockBugFixes instance;
+    return instance;
+}
 
 std::filesystem::path BedrockBugFixes::getConfigPath() const {
     return getSelf().getConfigDir() / u8"config.json";
@@ -60,4 +61,4 @@ bool BedrockBugFixes::unload() { return true; }
 
 } // namespace bbf
 
-LL_REGISTER_MOD(bbf::BedrockBugFixes, bbf::instance);
+LL_REGISTER_MOD(bbf::BedrockBugFixes, bbf::BedrockBugFixes::getInstance());
