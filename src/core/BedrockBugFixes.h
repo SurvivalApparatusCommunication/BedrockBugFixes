@@ -10,12 +10,12 @@ class BedrockBugFixes {
 
 public:
     static BedrockBugFixes& getInstance();
-
-    BedrockBugFixes(ll::mod::NativeMod& self) : mSelf(self) {}
+    
+    BedrockBugFixes() : mSelf(*ll::mod::NativeMod::current()) {}
 
     [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
-    [[nodiscard]] ll::Logger& getLogger() const { return getSelf().getLogger(); }
+    [[nodiscard]] ll::io::Logger& getLogger() const { return getSelf().getLogger(); }
 
     [[nodiscard]] Config& getConfig() { return *mConfig; }
 

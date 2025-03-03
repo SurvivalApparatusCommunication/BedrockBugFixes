@@ -2,8 +2,9 @@
 
 #include <ll/api/memory/Hook.h>
 
-#include <mc/entity/WeakEntityRef.h>
-#include <mc/math/Vec3.h>
+#include <mc/deps/core/math/Vec3.h>
+#include <mc/deps/core/string/HashedString.h>
+#include <mc/deps/ecs/WeakEntityRef.h>
 #include <mc/world/Container.h>
 #include <mc/world/actor/Actor.h>
 #include <mc/world/actor/Hopper.h>
@@ -11,7 +12,7 @@
 #include <mc/world/level/BlockSource.h>
 #include <mc/world/level/ChunkPos.h>
 #include <mc/world/level/block/Block.h>
-#include <mc/world/level/block/utils/VanillaBlockTypeIds.h>
+#include <mc/world/level/block/VanillaBlockTypeIds.h>
 #include <mc/world/level/chunk/LevelChunk.h>
 #include <mc/world/phys/AABB.h>
 
@@ -49,11 +50,7 @@ LL_TYPE_INSTANCE_HOOK(
 
     for (int x = minChunk.x; x <= maxChunk.x; x++)
         for (int z = minChunk.z; z <= maxChunk.z; z++) {
-            auto* chunk = ll::memory::virtualCall<LevelChunk*, ChunkPos const&>(
-                &blockSource,
-                39,
-                ChunkPos{x, z}
-            );
+            auto* chunk = blockSource.getChunk(x, z);
             if (!chunk) {
                 continue;
             }
@@ -94,7 +91,8 @@ LL_TYPE_INSTANCE_HOOK(
     &Block::isContainerBlock,
     bool
 ) {
-    return getName() == VanillaBlockTypeIds::Composter || origin();
+    return getLegacyBlock().mNameInfo->mFullName.get() == VanillaBlockTypeIds::Composter()
+        || origin();
 }
 
 struct HopperBugsFix::Impl {

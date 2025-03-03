@@ -1,19 +1,19 @@
 {
     "format_version": 2,
     "tooth": "github.com/SurvivalApparatusCommunication/BedrockBugFixes",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "info": {
         "name": "BedrockBugFixes",
         "description": "fix bugs",
         "author": "OEOTYAN",
         "tags": [
-            "levilamina",
-            "mod"
+            "platform:levilamina",
+            "type:mod"
         ]
     },
-    "asset_url": "https://github.com/SurvivalApparatusCommunication/BedrockBugFixes/releases/download/v0.1.6/BedrockBugFixes-windows-x64.zip",
+    "asset_url": "https://github.com/SurvivalApparatusCommunication/BedrockBugFixes/releases/download/v$(version)/BedrockBugFixes-windows-x64.zip",
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": ">=0.13.4"
+        "github.com/LiteLDev/LeviLamina": "1.0.x"
     },
     "files": {
         "place": [

@@ -2,9 +2,10 @@
 
 #include <ll/api/memory/Hook.h>
 
+#include <mc/deps/core/string/HashedString.h>
 #include <mc/world/level/BlockSource.h>
 #include <mc/world/level/block/Block.h>
-#include <mc/world/level/block/utils/VanillaBlockTypeIds.h>
+#include <mc/world/level/block/VanillaBlockTypeIds.h>
 
 namespace bbf {
 
@@ -18,7 +19,8 @@ LL_TYPE_INSTANCE_HOOK(
     BlockPos const& pos
 ) {
     origin(region, pos);
-    if (getTypeName() == VanillaBlockTypeIds::SnifferEgg.getString()) {
+    if (getLegacyBlock().mNameInfo->mFullName.get()
+        == VanillaBlockTypeIds::SnifferEgg()) {
         region.removeFromRandomTickingQueue(pos, *this);
     }
 }

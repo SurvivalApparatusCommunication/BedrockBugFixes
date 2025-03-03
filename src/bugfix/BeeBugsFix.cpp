@@ -2,8 +2,8 @@
 
 #include <ll/api/memory/Hook.h>
 
-#include <mc/math/Vec3.h>
-#include <mc/world/AutomaticID.h>
+#include <mc/deps/core/math/Vec3.h>
+#include <mc/deps/core/utility/AutomaticID.h>
 #include <mc/world/actor/ActorDefinitionTrigger.h>
 #include <mc/world/actor/ActorFilterGroup.h>
 #include <mc/world/actor/ai/goal/MoveToBlockGoal.h>
@@ -16,26 +16,22 @@ LL_TYPE_INSTANCE_HOOK(
     MoveToBlockGoalHook,
     ll::memory::HookPriority::Normal,
     MoveToBlockGoal,
-    //&MoveToBlockGoal::onPlayerDimensionChanged,
-    "??0MoveToBlockGoal@@QEAA@AEAVMob@@MHHHHMVVec3@@MW4TargetSelectionMethod@@V?$vector@"
-    "VActorDefinitionTrigger@@V?$allocator@VActorDefinitionTrigger@@@std@@@std@@3V?$"
-    "vector@VItemDescriptor@@V?$allocator@VItemDescriptor@@@std@@@5@AEBVActorFilterGroup@"
-    "@@Z",
-    MoveToBlockGoal*,
-    Mob&                                mob,
-    float                               speedModifier,
-    int                                 searchRange,
-    int                                 searchHeight,
-    int                                 tickInterval,
-    int                                 stayDurationTicks,
-    float                               goalRadius,
-    Vec3                                targetPositionOffset,
-    float                               chanceToStart,
-    ::TargetSelectionMethod             targetSelectionMethod,
-    std::vector<ActorDefinitionTrigger> onReachTriggers,
-    std::vector<ActorDefinitionTrigger> onStayCompletedTriggers,
-    std::vector<ItemDescriptor>         targetBlocks,
-    ActorFilterGroup const&             filterGroup
+    &MoveToBlockGoal::$ctor,
+    void*,
+    Mob&                                  mob,
+    float                                 speedModifier,
+    int                                   searchRange,
+    int                                   searchHeight,
+    int                                   tickInterval,
+    int                                   stayDurationTicks,
+    float                                 goalRadius,
+    Vec3                                  targetPositionOffset,
+    float                                 chanceToStart,
+    TargetSelectionMethod                 targetSelectionMethod,
+    std::vector<::ActorDefinitionTrigger> onReachTriggers,
+    std::vector<::ActorDefinitionTrigger> onStayCompletedTriggers,
+    std::vector<::ItemDescriptor>         targetBlocks,
+    ActorFilterGroup const&               targetBlockFilter
 ) {
     if (mob.isType(ActorType::Bee)) {
         targetSelectionMethod = TargetSelectionMethod::Nearest;
@@ -54,7 +50,7 @@ LL_TYPE_INSTANCE_HOOK(
         std::move(onReachTriggers),
         std::move(onStayCompletedTriggers),
         std::move(targetBlocks),
-        filterGroup
+        targetBlockFilter
     );
 }
 
