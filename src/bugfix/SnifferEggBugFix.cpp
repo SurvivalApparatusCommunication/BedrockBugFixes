@@ -13,15 +13,14 @@ LL_TYPE_INSTANCE_HOOK(
     BlockRemoveHook,
     ll::memory::HookPriority::Normal,
     Block,
-    &Block::onRemove,
+    &Block::_removeFromTickingQueues,
     void,
     BlockSource&    region,
     BlockPos const& pos
 ) {
     origin(region, pos);
-    if (getLegacyBlock().mNameInfo->mFullName.get()
-        == VanillaBlockTypeIds::SnifferEgg()) {
-        region.removeFromRandomTickingQueue(pos, *this);
+    if (getBlockType().mNameInfo->mFullName.get() == VanillaBlockTypeIds::SnifferEgg()) {
+        region._removeFromTickingQueue(pos, *this, TickingQueueType::Random);
     }
 }
 

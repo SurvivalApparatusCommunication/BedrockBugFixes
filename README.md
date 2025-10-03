@@ -24,12 +24,6 @@ fix allay was incorrectly teleported across dimensions without passing through t
 
 修复了小安粒在未经过传送门时被错误的跨维度传送的bug。
 
-### ChunkSaveBugFix
-
-fix the bottom subchunk could not be saved.
-
-修复了最下方的子区块无法保存的bug。
-
 ### SnifferEggBugFix
 
 fix [MCPE-174063](https://bugs.mojang.com/browse/MCPE-174063) Instant hatch sniffer egg.

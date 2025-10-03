@@ -14,12 +14,11 @@ LL_TYPE_INSTANCE_HOOK(
     FollowOwnerGoal,
     &FollowOwnerGoal::$onPlayerDimensionChanged,
     void,
-    Player*       player,
-    DimensionType fromDimension,
-    DimensionType toDimension
+    ::Player*       player,
+    ::DimensionType fromDimension,
+    ::DimensionType toDimension
 ) {
-    auto& mob = *ll::memory::dAccess<Mob*>(this, 7 * 8);
-    if (mob.isType(ActorType::Allay)) {
+    if (mMob.isType(ActorType::Allay)) {
         return;
     }
     origin(player, fromDimension, toDimension);

@@ -27,14 +27,6 @@ struct AllayTeleportBugFix {
     AllayTeleportBugFix();
     ~AllayTeleportBugFix();
 };
-struct ChunkSaveBugFix {
-    struct Impl;
-    std::unique_ptr<Impl> impl;
-
-    void call(bool);
-    ChunkSaveBugFix();
-    ~ChunkSaveBugFix();
-};
 struct SnifferEggBugFix {
     struct Impl;
     std::unique_ptr<Impl> impl;

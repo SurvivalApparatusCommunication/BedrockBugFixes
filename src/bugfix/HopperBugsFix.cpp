@@ -24,10 +24,18 @@ LL_TYPE_INSTANCE_HOOK(
     Hopper,
     &Hopper::_tryAddItemsFromPos,
     bool,
-    BlockSource& blockSource,
-    Container&   container,
-    Vec3 const&  pos
+    ::BlockSource& blockSource,
+    ::Container&   container,
+    ::Vec3 const&  pos
 ) {
+    if (!mIsEntity
+        && blockSource.getBlock(BlockPos{pos})
+                   .getBlockType()
+                   .mNameInfo->mFullName->mStrHash
+               == VanillaBlockTypeIds::Composter().mStrHash) {
+        return false;
+    }
+
     AABB aabb;
 
     if (mIsEntity) {
@@ -54,10 +62,10 @@ LL_TYPE_INSTANCE_HOOK(
             if (!chunk) {
                 continue;
             }
-            for (auto& weakEntityRef : chunk->getChunkEntities()) {
+            for (auto& weakEntityRef : *chunk->mEntities) {
                 auto* actor = weakEntityRef.tryUnwrap<Actor>().as_ptr();
                 if (!actor || !actor->isType(ActorType::ItemEntity)
-                    || !aabb.intersects(actor->getAABB()) || actor->isRemoved()) {
+                    || !aabb.intersects(actor->getAABB()) || actor->mRemoved) {
                     continue;
                 }
                 auto& item = static_cast<ItemActor*>(actor)->item();
@@ -84,19 +92,8 @@ LL_TYPE_INSTANCE_HOOK(
     return false;
 }
 
-LL_TYPE_INSTANCE_HOOK(
-    IsContainerBlockHook,
-    ll::memory::HookPriority::Normal,
-    Block,
-    &Block::isContainerBlock,
-    bool
-) {
-    return getLegacyBlock().mNameInfo->mFullName.get() == VanillaBlockTypeIds::Composter()
-        || origin();
-}
-
 struct HopperBugsFix::Impl {
-    ll::memory::HookRegistrar<HopperTryAddItemHook, IsContainerBlockHook> r;
+    ll::memory::HookRegistrar<HopperTryAddItemHook> r;
 };
 
 void HopperBugsFix::call(bool enable) {
