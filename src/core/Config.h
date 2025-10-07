@@ -7,13 +7,16 @@
 
 namespace bbf {
 struct Config {
-    int version = 3;
+    int version = 4;
 
     struct BugFixes {
-        ll::reflection::Dispatcher<bool, AllayTeleportBugFix> allay_teleport_bug_fix = true;
-        ll::reflection::Dispatcher<bool, BeeBugsFix>      bee_bugs_fix       = true;
-        ll::reflection::Dispatcher<bool, HopperBugsFix>   hopper_bugs_fix    = true;
+        ll::reflection::Dispatcher<bool, AllayTeleportBugFix> allay_teleport_bug_fix =
+            true;
+        ll::reflection::Dispatcher<bool, BeeBugsFix>       bee_bugs_fix        = true;
+        ll::reflection::Dispatcher<bool, HopperBugsFix>    hopper_bugs_fix     = true;
         ll::reflection::Dispatcher<bool, SnifferEggBugFix> sniffer_egg_bug_fix = true;
+        ll::reflection::Dispatcher<bool, GlowSquidAndGuardianSpawnFix>
+            glow_squid_and_guardian_spawn_fix = true;
     } bugfix{};
 
     struct CmdSetting {

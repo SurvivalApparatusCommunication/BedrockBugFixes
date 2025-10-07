@@ -35,4 +35,12 @@ struct SnifferEggBugFix {
     SnifferEggBugFix();
     ~SnifferEggBugFix();
 };
+struct GlowSquidAndGuardianSpawnFix {
+    struct Impl;
+    std::unique_ptr<Impl> impl;
+
+    void call(bool);
+    GlowSquidAndGuardianSpawnFix();
+    ~GlowSquidAndGuardianSpawnFix();
+};
 } // namespace bbf

@@ -30,6 +30,12 @@ fix [MCPE-174063](https://bugs.mojang.com/browse/MCPE-174063) Instant hatch snif
 
 修复了嗅探兽蛋的bug。
 
+### GlowSquidAndGuardianSpawnFix
+
+Fix where glow squids and guardians could spawn in any dimension
+
+复发光鱿鱼和守卫者可以在任意维度生成的bug。
+
 ## Contributing
 
 Ask questions by creating an issue.
